@@ -39,9 +39,9 @@ for claim in puzzle:
 expected_output_part1 = 121259
 output_part1 = len([count for _, count in occupied_spaces.items() if count > 1])
 if output_part1 == expected_output_part1:
-    print(f"✅ Challenge -> {output_part1}")
+    print(f"✅ Challenge Part 1 -> {output_part1}")
 else:
-    print(f"❌ Challenge -> Expected output {expected_output_part1}, got {output_part1}")
+    print(f"❌ Challenge Part 1 -> Expected output {expected_output_part1}, got {output_part1}")
 
 expected_output_part2 = "#239 @ 851,350: 19x16"
 output_part2 = None
@@ -49,6 +49,6 @@ for claim in puzzle:
     if not claim_overlap(occupied_spaces, *claim_to_size(claim)):
         output_part2 = claim
 if output_part2 == expected_output_part2:
-    print(f"✅ Challenge -> {output_part2}")
+    print(f"✅ Challenge Part 2 -> {output_part2}")
 else:
-    print(f"❌ Challenge -> Expected output '{expected_output_part2}', got '{output_part2}'")
+    print(f"❌ Challenge Part 2 -> Expected output '{expected_output_part2}', got '{output_part2}'")

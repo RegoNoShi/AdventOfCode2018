@@ -38,13 +38,13 @@ for boxId in puzzle:
 expected_output_part1 = 7533
 output_part1 = twice * three_times
 if output_part1 == expected_output_part1:
-    print(f"✅ Challenge -> {output_part1}")
+    print(f"✅ Challenge Part 1 -> {output_part1}")
 else:
-    print(f"❌ Challenge -> Expected output {expected_output_part1}, got {output_part1}")
+    print(f"❌ Challenge Part 1 -> Expected output {expected_output_part1}, got {output_part1}")
 
 expected_output_part2 = "mphcuasvrnjzzkbgdtqeoylva"
 output_part2 = find_box_id()
 if output_part2 == expected_output_part2:
-    print(f"✅ Challenge -> {output_part2}")
+    print(f"✅ Challenge Part 2 -> {output_part2}")
 else:
-    print(f"❌ Challenge -> Expected output '{expected_output_part2}', got '{output_part2}'")
+    print(f"❌ Challenge Part 2 -> Expected output '{expected_output_part2}', got '{output_part2}'")
