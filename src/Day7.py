@@ -3,11 +3,6 @@ import re
 
 puzzle = open("../inputs/Day7.txt", "r").readlines()
 
-# puzzle = ["Step C must be finished before step A can begin.", "Step C must be finished before step F can begin.",
-#           "Step A must be finished before step B can begin.", "Step A must be finished before step D can begin.",
-#           "Step B must be finished before step E can begin.", "Step D must be finished before step E can begin.",
-#           "Step F must be finished before step E can begin."]  #, "Step G must be finished before step H can begin."]
-
 required_for = {}
 depends_on = {}
 all_steps = set()
@@ -53,7 +48,6 @@ while len(available_steps) > 0:
         available_steps.sort()
 
 
-# expected_output_part1 = 'CABDFEGH'
 output_part1 = solution
 expected_output_part1 = 'FMOXCDGJRAUIHKNYZTESWLPBQV'
 if output_part1 == expected_output_part1:
