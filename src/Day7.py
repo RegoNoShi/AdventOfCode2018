@@ -114,6 +114,6 @@ while len(available_steps) > 0 or pending_workers(workers):
 expected_output_part2 = 1053
 output_part2 = time
 if output_part2 == expected_output_part2:
-    print(f"✅ Challenge Part 1 -> {output_part2}")
+    print(f"✅ Challenge Part 2 -> {output_part2}")
 else:
-    print(f"❌ Challenge Part 1 -> Expected output {expected_output_part2}, got {output_part2}")
+    print(f"❌ Challenge Part 2 -> Expected output {expected_output_part2}, got {output_part2}")
