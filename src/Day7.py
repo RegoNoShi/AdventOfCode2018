@@ -22,9 +22,9 @@ for line in puzzle:
     all_steps.add(after)
 
 
-def is_ready(_step):
-    if _step in depends_on:
-        return len(depends_on[_step].difference(completed_steps)) == 0
+def is_ready(_step, _depends_on, _completed_steps):
+    if _step in _depends_on:
+        return len(_depends_on[_step].difference(_completed_steps)) == 0
     else:
         return True
 
@@ -43,7 +43,7 @@ while len(available_steps) > 0:
 
         if step in required_for:
             for next_step in required_for[step]:
-                if is_ready(next_step):
+                if is_ready(next_step, depends_on, completed_steps):
                     available_steps.append(next_step)
         available_steps.sort()
 
@@ -56,53 +56,63 @@ else:
     print(f"❌ Challenge Part 1 -> Expected output {expected_output_part1}, got {output_part1}")
 
 
-def available(_step, _required_for):
-    for _, required_steps in _required_for.items():
-        if _step in required_steps:
-            return False
-    return True
+available_steps = sorted(all_steps.difference(depends_on.keys()))
+completed_steps = set()
+workers = [('', -1) for _ in range(5)]
+time = 0
+
+
+def pending_workers(_workers):
+    for _worker in _workers:
+        if _worker[0] != '':
+            return True
+    return False
 
 
 def first_available_worker(_workers):
-    ws = [w for w in _workers if w[1] is None]
-    return ws[0] if len(ws) > 0 else None
+    for index in range(len(_workers)):
+        if _workers[index][0] == '':
+            return index
+    return None
 
 
-def first_done_worker(_workers):
-    ws = [w for w in _workers if w[1] is not None]
-    return min(ws, key=lambda w: w[2]) if len(ws) > 0 else None
+def next_step(_available_steps):
+    if len(_available_steps) > 0:
+        return _available_steps[0]
+    return None
 
 
-completed_steps = set()
-next_steps = all_steps.difference(depends_on.keys())
-time = 0
-workers = [(i, None, 0) for i in range(5)]
-delay = 60
-worker = None
-while len(required_for) > 0:
-    available_steps = [step for step in next_steps if available(step, required_for)]
+def next_completed_step(_workers):
+    min_time = float('inf')
+    min_worker = None
+    for index in range(len(_workers)):
+        if _workers[index][0] != '':
+            if _workers[index][1] < min_time:
+                min_time = _workers[index][1]
+                min_worker = index
+    return min_worker
+
+
+while len(available_steps) > 0 or pending_workers(workers):
     worker = first_available_worker(workers)
+    step = next_step(available_steps)
 
-    while worker is None or len(available_steps) == 0:
-        to_complete = first_done_worker(workers)
-        if to_complete[1] in required_for:
-            next_steps = next_steps.union(set(required_for[to_complete[1]]))
-            del required_for[to_complete[1]]
-        time = to_complete[2]
-        completed_steps.add(to_complete[1])
-        for step in [s for s in completed_steps if s in next_steps]:
-            next_steps.remove(step)
-        workers[to_complete[0]] = (to_complete[0], None, 0)
-
-        available_steps = [step for step in next_steps if available(step, required_for)]
-        worker = first_available_worker(workers)
-
-    step = min(available_steps)
-    workers[worker[0]] = (worker[0], step, time + delay + ord(step) - 64)
-    next_steps.remove(step)
+    if worker is not None and step is not None:
+        workers[worker] = (step, time + ord(step) - 4)
+        available_steps.remove(step)
+    else:
+        worker_id = next_completed_step(workers)
+        completed_step, time = workers[worker_id]
+        workers[worker_id] = ('', -1)
+        completed_steps.add(completed_step)
+        if completed_step in required_for:
+            for new_step in required_for[completed_step]:
+                if new_step in depends_on and len(depends_on[new_step].difference(completed_steps)) == 0:
+                    available_steps.append(new_step)
+            available_steps.sort()
 
 expected_output_part2 = 1053
-output_part2 = workers[worker[0]][2]
+output_part2 = time
 if output_part2 == expected_output_part2:
     print(f"✅ Challenge Part 1 -> {output_part2}")
 else:
