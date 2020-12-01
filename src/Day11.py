@@ -1,5 +1,5 @@
 
-grid_serial_number = 5791
+puzzle = 5791
 grid_size = 300
 
 
@@ -29,7 +29,7 @@ def max_power(_grid, _max_square_size):
     return _max_power, _max_coordinates
 
 
-grid = [[power_level(x, y, grid_serial_number) for y in range(1, grid_size + 1)] for x in range(1, grid_size + 1)]
+grid = [[power_level(x, y, puzzle) for y in range(1, grid_size + 1)] for x in range(1, grid_size + 1)]
 
 _, coordinates = max_power(grid, 3)
 expected_coordinates = (20, 68, 3)
