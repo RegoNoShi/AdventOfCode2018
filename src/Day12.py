@@ -45,6 +45,6 @@ else:
 output_part_2 = calculate_result(puzzle, 50000000000)
 expected_output_part_2 = 3900000002467
 if output_part_2 == expected_output_part_2:
-    print(f"✅ Challenge Part 1 -> {output_part_2}")
+    print(f"✅ Challenge Part 2 -> {output_part_2}")
 else:
-    print(f"❌ Challenge Part 1 -> Expected output {expected_output_part_2}, got {output_part_2}")
+    print(f"❌ Challenge Part 2 -> Expected output {expected_output_part_2}, got {output_part_2}")
