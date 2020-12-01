@@ -16,7 +16,7 @@ def calculate_result(_puzzle, _generations):
     field = [idx for idx in range(len(initial_state)) if initial_state[idx] == '#']
     rules = set()
     for line in puzzle[1:]:
-        match = re.search(r"([\\.#]+)\s=>\s([\\.#]{1})", line)
+        match = re.search(r"([\\.#]+)\s=>\s([\\.#])", line)
         if match.group(2) == '#':
             rules.add(tuple(1 if c == '#' else 0 for c in match.group(1)))
 
