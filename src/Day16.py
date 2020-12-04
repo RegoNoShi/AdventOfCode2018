@@ -2,7 +2,6 @@
 import re
 
 puzzle = [str(line.strip()) for line in open("../inputs/Day16.txt", "r").readlines()]
-# puzzle = ["Before: [3, 2, 1, 1]", "9 2 1 2", "After:  [3, 2, 2, 1]"]
 
 all_operations = {
     'addr': lambda registers, a, b: registers[a] + registers[b],
