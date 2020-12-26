@@ -1,17 +1,5 @@
 
-def print_field(_field):
-    for _r in range(len(_field)):
-        print(''.join(_field[_r][:-1]))
-
-
 puzzle = [list(line) for line in open("../inputs/Day13.txt", "r").readlines()]
-# puzzle = open("Day13.txt", "r").readlines()
-# puzzle = ['/->-\        ',
-#           '|   |  /----\\',
-#           '| /-+--+-\  |',
-#           '| | |  | v  |',
-#           '\-+-/  \-+--/',
-#           '  \------/   ']
 
 cart = {}
 directions = {'>': '-', '<': '-', '^': '|', 'v': '|'}
